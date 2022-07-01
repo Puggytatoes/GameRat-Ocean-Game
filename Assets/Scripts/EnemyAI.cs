@@ -17,8 +17,18 @@ public class EneymyAI : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
+    PlayerScanner playerScanner;
+
     Seeker seeker;
     Rigidbody2D rb;
+
+    PlayerOutOfRange playerOutOfRange;
+
+    void Awake()
+    {
+        playerScanner = GetComponent<PlayerScanner>();
+        playerOutOfRange = GetComponent<PlayerOutOfRange>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +90,17 @@ public class EneymyAI : MonoBehaviour
         else if (rb.velocity.x <= -0.01f)
         {
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        
+
+        if (playerScanner.PlayerDetected == true && playerOutOfRange.InRange == true)
+        {
+            speed = 600;
+        }
+        else
+        {
+            speed = 0;
         }
     }
 }
