@@ -38,6 +38,7 @@ public class ComponentManager : MonoBehaviour
             enemyMovement.enabled = true;
         }
 
+
         if (playerScanner.PlayerDetected == true && playerOutOfRange.InRange == true)
         {
             enemyAI.enabled = true;

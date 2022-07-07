@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InRange: 0
-  detectionTag: Enemy
+  detectionTag: Player
 --- !u!61 &1356542019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1390,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06fbbaac5363e354b8789bca8ffe3802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zone: {fileID: 1356542017}
 --- !u!1 &1559981351
 GameObject:
   m_ObjectHideFlags: 0
