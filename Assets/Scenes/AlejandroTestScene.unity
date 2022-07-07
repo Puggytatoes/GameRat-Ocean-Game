@@ -687,7 +687,7 @@ Transform:
   m_GameObject: {fileID: 425238743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.44, y: -8.28, z: 0}
-  m_LocalScale: {x: 14.654494, y: 1.0170941, z: 1.0170941}
+  m_LocalScale: {x: 14.10495, y: 1.0170941, z: 1.0170941}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1245,8 +1245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 206652393}
-  speed: 600
-  nextWaypointDistance: 3
+  speed: 1000
+  nextWaypointDistance: 0.5
   enemyGFX: {fileID: 808858438}
 --- !u!50 &1549839058
 Rigidbody2D:

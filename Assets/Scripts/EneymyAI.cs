@@ -93,7 +93,7 @@ public class EnemyAI : MonoBehaviour
 
         if (playerScanner.PlayerDetected == true)
         {
-            speed = 600;
+            speed = 1000;
         }
         else
         {

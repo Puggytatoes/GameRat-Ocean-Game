@@ -8,7 +8,7 @@ public class EneymyAI : MonoBehaviour
 
     public Transform target;
 
-    public float speed = 400f;
+    public float speed = 1000f;
     public float nextWaypointDistance = 3f;
 
     public Transform enemyGFX;
@@ -17,17 +17,16 @@ public class EneymyAI : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
-    PlayerScanner playerScanner;
+    
 
     Seeker seeker;
     Rigidbody2D rb;
 
-    PlayerOutOfRange playerOutOfRange;
+    
 
     void Awake()
     {
-        playerScanner = GetComponent<PlayerScanner>();
-        playerOutOfRange = GetComponent<PlayerOutOfRange>();
+        
     }
 
     // Start is called before the first frame update
@@ -94,13 +93,6 @@ public class EneymyAI : MonoBehaviour
 
         
 
-        if (playerScanner.PlayerDetected == true && playerOutOfRange.InRange == true)
-        {
-            speed = 600;
-        }
-        else
-        {
-            speed = 0;
-        }
+     
     }
 }

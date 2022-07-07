@@ -8,7 +8,7 @@ public class PlayerOutOfRange : MonoBehaviour
     public bool InRange;
 
     [SerializeField]
-    private string detectionTag = "Enemy";
+    private string detectionTag = "Player";
 
 
     private void OnTriggerEnter2D(Collider2D collision)

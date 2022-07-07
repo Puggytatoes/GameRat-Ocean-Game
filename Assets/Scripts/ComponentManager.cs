@@ -11,13 +11,20 @@ public class ComponentManager : MonoBehaviour
 
     PlayerOutOfRange playerOutOfRange;
 
+    EnemyAI enemyAI;
+
+    public GameObject Zone;
+
     void Awake()
     {
         playerScanner = GetComponent<PlayerScanner>();
 
         enemyMovement = GetComponent<EnemyMovement>();
 
-        playerOutOfRange = GetComponent<PlayerOutOfRange>();
+        enemyAI = GetComponent<EnemyAI>();
+
+        playerOutOfRange = Zone.GetComponent<PlayerOutOfRange>();
+
     }
     // Update is called once per frame
     void Update()
@@ -31,6 +38,14 @@ public class ComponentManager : MonoBehaviour
             enemyMovement.enabled = true;
         }
 
+        if (playerScanner.PlayerDetected == true && playerOutOfRange.InRange == true)
+        {
+            enemyAI.enabled = true;
+        }
+        else
+        {
+            enemyAI.enabled = false;
+        }
 
     }
 }
