@@ -14,10 +14,13 @@ public class Movement : MonoBehaviour
     private bool isDashing;
     private float dashingPower = 24f;
     private float dashingTime = .2f;
-    private float dashingCooldown = 1f;
+    [SerializeField]
+    private float dashingCooldown = .5f;
     private bool isFacingRight = true;
     private float horizontal;
+    [SerializeField]
     private float speed = 8f;
+    [SerializeField]
     private float jumpingPower = 16f;
 
 
