@@ -4,34 +4,13 @@ using UnityEngine;
 
 public class MouseCheck : MonoBehaviour
 {
-    public GameObject hoveredGO;
-    public enum HoverState { HOVER, NONE };
-    public HoverState hover_state = HoverState.NONE;
+    public GameObject checkObject;
     
-    /*
-    void OnMouseOver()
+    public void OnMouseOver()
     {
-        Rigidbody2D rb = gameObject.GetComponentInParent(typeof(Rigidbody2D)) as Rigidbody2D;
         Debug.Log("STOP");
+        Rigidbody2D rb = gameObject.GetComponentInParent(typeof(Rigidbody2D)) as Rigidbody2D;
+        Debug.Log(rb);
         rb.velocity = Vector2.zero;
-    }
-    */
-
-    void Update()
-    {
-        RaycastHit hitInfo = new RaycastHit();
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            if (hover_state == HoverState.NONE)
-            {
-                hitInfo.collider.SendMessage("OnMouseEnter", SendMessageOptions.DontRequireReceiver);
-                hoveredGO = hitInfo.collider.gameObject;
-                Debug.Log("TEST1");
-            }
-            hover_state = HoverState.HOVER;
-            Debug.Log("TEST2");
-        }
     }
 }

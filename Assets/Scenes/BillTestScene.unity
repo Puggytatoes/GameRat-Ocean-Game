@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 1025578919}
   - component: {fileID: 1025578921}
   - component: {fileID: 1025578922}
+  - component: {fileID: 1025578923}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -292,8 +293,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
-  rb: {fileID: 0}
-  animator: {fileID: 0}
+--- !u!58 &1025578923
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025578916}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.14116758, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.11559898
 --- !u!1 &1460805796
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +463,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.15, y: 0}
@@ -466,8 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1009da2b573daf4fb405fc8b963bfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoveredGO: {fileID: 1968686496}
-  hover_state: 1
+  checkObject: {fileID: 1968686496}
 --- !u!1 &2085507423
 GameObject:
   m_ObjectHideFlags: 0
