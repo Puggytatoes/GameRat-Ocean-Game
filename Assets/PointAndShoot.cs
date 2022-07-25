@@ -27,11 +27,10 @@ public class PointAndShoot : MonoBehaviour
 
         Vector3 difference = target - player.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        
-        if (Input.GetMouseButtonDown(1))
-        {
-           player.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-        }
+
+
+        player.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+
         if (Input.GetMouseButtonDown(0)) 
         {
             float distance = difference.magnitude;

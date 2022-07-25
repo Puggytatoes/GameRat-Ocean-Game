@@ -15,9 +15,11 @@ public class ComponentManager : MonoBehaviour
 
     public GameObject Zone;
 
+    public GameObject Scanner;
+
     void Awake()
     {
-        playerScanner = GetComponent<PlayerScanner>();
+        playerScanner = Scanner.GetComponent<PlayerScanner>();
 
         enemyMovement = GetComponent<EnemyMovement>();
 
