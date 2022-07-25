@@ -13,6 +13,15 @@ public class MouseMovement : MonoBehaviour
     private Animator anim;
     private CircleCollider2D coll;
 
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = .2f;
+    private float dashingCooldown = .5f;
+    private float horizontal;
+    private float speed = 8f;
+    private bool isFacingRight = true;
+
     // Use this for initialization
     void Start()
     {
@@ -24,6 +33,14 @@ public class MouseMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
+        }
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButton(1))
@@ -53,6 +70,12 @@ public class MouseMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
         if (isHoldingMouse)
             rb.AddForce((mouseDirection) * moveSpeed * Time.deltaTime);
         else
@@ -72,5 +95,19 @@ public class MouseMovement : MonoBehaviour
             anim.SetBool("isSwimming", true);
         else
             anim.SetBool("isSwimming", false);
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(mouseDirection.x * dashingPower, mouseDirection.y * dashingPower);
+        yield return new WaitForSeconds(dashingTime);
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }
