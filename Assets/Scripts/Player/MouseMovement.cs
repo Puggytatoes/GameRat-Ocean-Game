@@ -8,19 +8,19 @@ public class MouseMovement : MonoBehaviour
     private Vector3 mouseDirection;
     private bool facingRight;
     private bool isHoldingMouse;
+    private float rotation_z;
     [SerializeField] private float moveSpeed = 4f;
     private Rigidbody2D rb;
     private Animator anim;
     private CircleCollider2D coll;
+    private SpriteRenderer sr;
 
     private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 24f;
+    [SerializeField] private bool isDashing;
+    [SerializeField] private float dashingPower = 24f;
     private float dashingTime = .2f;
     private float dashingCooldown = .5f;
     private float horizontal;
-    private float speed = 8f;
-    private bool isFacingRight = true;
 
     // Use this for initialization
     void Start()
@@ -28,19 +28,12 @@ public class MouseMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<CircleCollider2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isDashing)
-        {
-            return;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            StartCoroutine(Dash());
-        }
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButton(1))
@@ -53,12 +46,26 @@ public class MouseMovement : MonoBehaviour
         else
             isHoldingMouse = false;
 
+        if (isDashing)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
+        }
+
+        Animate();
+
         if (mousePosition.x < transform.position.x && !facingRight)
             Flip();
         else if (mousePosition.x > transform.position.x && facingRight)
             Flip();
 
-        Animate();
+        //rotates player to follow cursor
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference.Normalize();
+        rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
         if (coll.OverlapPoint(mousePosition))
         {
@@ -74,7 +81,6 @@ public class MouseMovement : MonoBehaviour
         {
             return;
         }
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         if (isHoldingMouse)
             rb.AddForce((mouseDirection) * moveSpeed * Time.deltaTime);
@@ -86,7 +92,7 @@ public class MouseMovement : MonoBehaviour
     {
         rb.AddForce(-rb.velocity * rb.mass * 2 * Time.deltaTime);
         facingRight = !facingRight;
-        transform.Rotate(0f, 180f, 0f);
+        sr.flipY = facingRight;
     }
 
     void Animate()
@@ -101,13 +107,12 @@ public class MouseMovement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
         rb.velocity = new Vector2(mouseDirection.x * dashingPower, mouseDirection.y * dashingPower);
+        coll.enabled = false;
         yield return new WaitForSeconds(dashingTime);
-        rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
+        coll.enabled = true;
     }
 }
