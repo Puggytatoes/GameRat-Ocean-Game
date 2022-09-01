@@ -9,7 +9,7 @@ public class ProjectileMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
-    playermovement target;
+    MouseMovement target;
     Vector2 moveDirection;
 
 
@@ -20,7 +20,7 @@ public class ProjectileMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.FindObjectOfType<playermovement>();
+        target = GameObject.FindObjectOfType<MouseMovement>();
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y + 7);
         Destroy(gameObject, 3f);
