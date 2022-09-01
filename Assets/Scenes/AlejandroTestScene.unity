@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b73eb53af80e24cac588a704660e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 206652393}
+  target: {fileID: 862154967}
   speed: 1000
   nextWaypointDistance: 0.5
   enemyGFX: {fileID: 2091188436}
@@ -2303,7 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b73eb53af80e24cac588a704660e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 206652393}
+  target: {fileID: 862154967}
   speed: 1000
   nextWaypointDistance: 0.5
   enemyGFX: {fileID: 808858438}
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b73eb53af80e24cac588a704660e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 206652393}
+  target: {fileID: 862154967}
   speed: 1000
   nextWaypointDistance: 0.5
   enemyGFX: {fileID: 1584739857}
@@ -3683,6 +3683,10 @@ PrefabInstance:
     - target: {fileID: 1446556132259850390, guid: 1098dc1f67452a344bb16bcd2affba6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1446556132259850394, guid: 1098dc1f67452a344bb16bcd2affba6d, type: 3}
+      propertyPath: moveSpeed
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2807126850880973940, guid: 1098dc1f67452a344bb16bcd2affba6d, type: 3}
       propertyPath: m_LocalPosition.x
