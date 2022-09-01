@@ -15,6 +15,11 @@ public class MouseMovement : MonoBehaviour
     private CircleCollider2D coll;
     private SpriteRenderer sr;
 
+    [SerializeField] private Transform center;
+    [SerializeField] private float knockbackVel = 8f;
+    [SerializeField] private bool knockbacked;
+    [SerializeField] private float knockbackWaitTime = 0.5f;
+
     private bool canDash = true;
     [SerializeField] private bool isDashing;
     [SerializeField] private float dashingPower = 24f;
@@ -36,7 +41,7 @@ public class MouseMovement : MonoBehaviour
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !knockbacked)
         {
             mouseDirection = mousePosition - gameObject.transform.position;
             mouseDirection = new Vector2(mouseDirection.x, mouseDirection.y);
@@ -77,15 +82,19 @@ public class MouseMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (isDashing)
+        if (!knockbacked)
         {
-            return;
+            if (isDashing)
+            {
+                return;
+            }
+
+            if (isHoldingMouse)
+                rb.AddForce((mouseDirection) * moveSpeed * Time.deltaTime);
+            else
+                rb.AddForce(-rb.velocity * rb.mass * Time.deltaTime);
         }
 
-        if (isHoldingMouse)
-            rb.AddForce((mouseDirection) * moveSpeed * Time.deltaTime);
-        else
-            rb.AddForce(-rb.velocity * rb.mass * Time.deltaTime);
     }
 
     private void Flip()
@@ -114,5 +123,19 @@ public class MouseMovement : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
         coll.enabled = true;
+    }
+
+    public void Knockback(Transform t)
+    {
+        var dir = center.position - t.position;
+        knockbacked = true;
+        rb.velocity = dir.normalized * knockbackVel;
+        StartCoroutine(Unknockback());
+    }
+
+    private IEnumerator Unknockback()
+    {
+        yield return new WaitForSeconds(knockbackWaitTime);
+        knockbacked = false;
     }
 }
