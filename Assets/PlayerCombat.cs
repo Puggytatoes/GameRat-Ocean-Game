@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("space"))
         {
             Attack();
             
