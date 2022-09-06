@@ -7,6 +7,7 @@ public class KnockbackTrigger : MonoBehaviour
         var player = other.collider.GetComponent<MouseMovement>();
         if (player != null)
         {
+            Health.RemoveHeart();
             player.Knockback(transform);
         }
     }
