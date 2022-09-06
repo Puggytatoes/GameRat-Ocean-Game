@@ -12,7 +12,6 @@ public class EneymyAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
 
     public Transform enemyGFX;
-
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
@@ -60,7 +59,7 @@ public class EneymyAI : MonoBehaviour
         if (path == null)
             return;
 
-        if (currentWaypoint >= path.vectorPath.Count)
+       if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
