@@ -4,27 +4,17 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-
+    [SerializeField] private int bulletDmg;
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Hit!");
+            GameObject enemy = collision.gameObject;
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(bulletDmg);
             Destroy(gameObject);
         }
+        //later add a way for the bullets to be destroyed whenever they hit anything (except the a* zone) 
     }
 
 }

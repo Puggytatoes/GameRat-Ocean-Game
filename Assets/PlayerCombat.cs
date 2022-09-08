@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
+    public int attackDmg = 10;
     void Update()
     {
         if (Input.GetKeyDown("space"))
@@ -25,6 +26,12 @@ public class PlayerCombat : MonoBehaviour
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
+            GameObject other = enemy.gameObject;
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(attackDmg);
+
+            EnemyKnockback enemyKnockback = other.GetComponent<EnemyKnockback>();
+            enemyKnockback.Knockback(transform);
         }
     }
 
