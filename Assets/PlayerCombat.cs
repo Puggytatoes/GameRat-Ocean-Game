@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    public Animator animator;
+    //public Animator animator;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;

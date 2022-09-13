@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
     [SerializeField]
     private float deathWaitTime;
+    [SerializeField]
+    private bool isDead;
 
     public Rigidbody2D enemyBody;
     public BoxCollider2D coll;
+
+    public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
 
     private void Start()
     {
@@ -21,13 +26,21 @@ public class EnemyHealth : MonoBehaviour
         enemyBody = GetComponent<Rigidbody2D>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject sender)
     {
+        if (isDead)
+            return;
+
         currentHealth -= damage;
 
+        if (currentHealth > 0)
+        {
+            OnHitWithReference?.Invoke(sender);
+        }
         if (currentHealth <= 0)
         {
             Dead();
+            isDead = true;
         }
     }
 

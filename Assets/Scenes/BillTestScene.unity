@@ -915,8 +915,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 1121370809}
   knockbackVel: 8
+  knockbacked: 0
   knockbackWaitTime: 0.5
   rb: {fileID: 396953958}
+--- !u!114 &1888829191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396953950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540ee6ba459b63a45923e1694d32d602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  strength: 16
+  delay: 0.15
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDone:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2048408357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c6620e4c97f514bbc583adfae23252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
   attackPoint: {fileID: 463538133}
   attackRange: 1.5
   enemyLayers:
