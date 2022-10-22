@@ -14,8 +14,10 @@ public class MouseMovement : MonoBehaviour
     private Animator anim;
     private CircleCollider2D coll;
     private SpriteRenderer sr;
+    private Vector2 screenBounds;
 
     [SerializeField] private Transform center;
+    [SerializeField] private GameObject bulletStart;
     [SerializeField] private float knockbackVel = 8f;
     [SerializeField] private bool knockbacked;
     [SerializeField] private float knockbackWaitTime = 0.5f;
@@ -24,8 +26,10 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] private bool isDashing;
     [SerializeField] private float dashingPower = 24f;
     private float dashingTime = .2f;
-    private float dashingCooldown = .5f;
-    private float horizontal;
+    [SerializeField] private float dashingCooldown = .5f;
+    private float horizontalMovement;
+    private float verticalalMovement;
+    private Vector3 moveDirection;
 
     // Use this for initialization
     void Start()
@@ -34,22 +38,17 @@ public class MouseMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         coll = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButton(1) && !knockbacked)
-        {
-            mouseDirection = mousePosition - gameObject.transform.position;
-            mouseDirection = new Vector2(mouseDirection.x, mouseDirection.y);
-            mouseDirection = mouseDirection.normalized;
-            isHoldingMouse = true;
-        }
-        else
-            isHoldingMouse = false;
+        
+        PlayerInput();
+        ClampMovement();
 
         if (isDashing)
             return;
@@ -60,17 +59,11 @@ public class MouseMovement : MonoBehaviour
         }
 
         Animate();
-
+        
         if (mousePosition.x < transform.position.x && !facingRight)
             Flip();
         else if (mousePosition.x > transform.position.x && facingRight)
             Flip();
-
-        //rotates player to follow cursor
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        difference.Normalize();
-        rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
         if (coll.OverlapPoint(mousePosition))
         {
@@ -82,26 +75,51 @@ public class MouseMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         if (!knockbacked)
         {
+
             if (isDashing)
             {
                 return;
             }
 
+            /*
             if (isHoldingMouse)
-                rb.AddForce((mouseDirection) * moveSpeed * Time.deltaTime);
+                rb.AddForce((moveDirection) * moveSpeed * Time.deltaTime);
             else
-                rb.AddForce(-rb.velocity * rb.mass * Time.deltaTime);
+                rb.AddForce(-rb.velocity * rb.mass * Time.deltaTime);*/
         }
 
+    }
+
+    private void PlayerInput()
+    {
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
+        verticalalMovement = Input.GetAxisRaw("Vertical");
+
+        moveDirection = this.transform.up * verticalalMovement + this.transform.right * horizontalMovement;
+
+        rb.AddForce(moveDirection * moveSpeed, ForceMode2D.Force);
+    }
+
+    private void ClampMovement()
+    {
+        Vector3 viewPos = transform.position;
+        float playerWidth = sr.bounds.size.x / 2;
+        float playerHeight = sr.bounds.size.y / 2;
+
+        viewPos.x = Mathf.Clamp(viewPos.x, -screenBounds.x + playerWidth, screenBounds.x - playerWidth);
+        viewPos.y = Mathf.Clamp(viewPos.y, -screenBounds.y + playerHeight, screenBounds.y - playerHeight);
+        transform.position = viewPos;
     }
 
     private void Flip()
     {
         rb.AddForce(-rb.velocity * rb.mass * 2 * Time.deltaTime);
         facingRight = !facingRight;
-        sr.flipY = facingRight;
+        bulletStart.transform.localPosition = new Vector3(-bulletStart.transform.localPosition.x, 0, 0);
+        sr.flipX = facingRight;
     }
 
     void Animate()
@@ -116,7 +134,7 @@ public class MouseMovement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        rb.velocity = new Vector2(mouseDirection.x * dashingPower, mouseDirection.y * dashingPower);
+        rb.velocity = new Vector2(moveDirection.x * dashingPower, moveDirection.y * dashingPower);
         coll.enabled = false;
         yield return new WaitForSeconds(dashingTime);
         isDashing = false;
