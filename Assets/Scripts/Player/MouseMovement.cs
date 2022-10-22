@@ -25,8 +25,12 @@ public class MouseMovement : MonoBehaviour
     private bool canDash = true;
     [SerializeField] private bool isDashing;
     [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private int dashChargesStart;
+    private int currentDashCharges;
+    private bool currentlyRechargingDash;
     private float dashingTime = .2f;
     [SerializeField] private float dashingCooldown = .5f;
+    [SerializeField] private float dashRechargeTime;
     private float horizontalMovement;
     private float verticalalMovement;
     private Vector3 moveDirection;
@@ -39,6 +43,8 @@ public class MouseMovement : MonoBehaviour
         coll = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        currentDashCharges = dashChargesStart;
+        currentlyRechargingDash = false;
     }
 
     // Update is called once per frame
@@ -53,9 +59,11 @@ public class MouseMovement : MonoBehaviour
         if (isDashing)
             return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && currentDashCharges > 0)
         {
             StartCoroutine(Dash());
+            currentDashCharges--;
+            StartCoroutine(DashRecharge());
         }
 
         Animate();
@@ -141,6 +149,17 @@ public class MouseMovement : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
         coll.enabled = true;
+    }
+
+    private IEnumerator DashRecharge()
+    {
+        currentlyRechargingDash = true;
+        yield return new WaitForSeconds(dashRechargeTime);
+        if (currentDashCharges < dashChargesStart && !currentlyRechargingDash)
+        {
+            currentDashCharges++;
+        }
+        currentlyRechargingDash = false;
     }
 
     public void Knockback(Transform t)
