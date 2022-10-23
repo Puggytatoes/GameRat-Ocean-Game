@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KnockOnHouse : MonoBehaviour
 {
     [SerializeField] private float trickChance;
     [SerializeField] private float treatChance;
     [SerializeField] private GameObject interactButton;
+    [SerializeField] private GameObject Player;
     [SerializeField] private KeyCode interactKey = KeyCode.F;
     [SerializeField] private List<GameObject> candyPrefabs;
     [SerializeField] private int minCandy;
@@ -22,16 +24,23 @@ public class KnockOnHouse : MonoBehaviour
     private float totalChance;
     private Vector2 center;
     private bool atHouse;
-    
+    private Image interactPrompt;
 
     // Start is called before the first frame update
     void Start()
     {
         knockZone = GetComponent<BoxCollider2D>();
-        interactButton.SetActive(false);
+        //interactButton.SetActive(false);
+        interactPrompt = Player.GetComponentInChildren<Image>();
+        interactPrompt.enabled = false;
         totalChance = trickChance + treatChance;
         center = transform.position;
         atHouse = false;
+    }
+
+    private void Awake()
+    {
+        //interactButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,9 +64,11 @@ public class KnockOnHouse : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.tag == "Player")
         {
-            interactButton.SetActive(true);
+            Debug.Log("Enter");
+            interactPrompt.enabled = true;
+            //interactButton.SetActive(true);
             atHouse = true;
         }
     }
@@ -66,14 +77,11 @@ public class KnockOnHouse : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            interactButton.SetActive(false);
+            Debug.Log("Exit");
+            interactPrompt.enabled = false;
+            //interactButton.SetActive(false);
             atHouse = false;
         }
-    }
-
-    private void SetInteractFalse()
-    {
-        interactButton.SetActive(false);
     }
 
     private void SpawnEnemies()

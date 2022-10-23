@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 0}
+  target: {fileID: 8050431504810033302, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
 --- !u!58 &805027470885431982
 CircleCollider2D:
   m_ObjectHideFlags: 0

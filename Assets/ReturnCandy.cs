@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReturnCandy : MonoBehaviour
 {
     [SerializeField] private GameObject interactButton;
+    [SerializeField] private GameObject Player;
     [SerializeField] private KeyCode interactKey = KeyCode.F;
     [SerializeField] private CandyInteraction grabCandyAmount;
     [SerializeField] private List<int> candyTiers;
@@ -12,10 +14,13 @@ public class ReturnCandy : MonoBehaviour
     [SerializeField] private List<float> timeBonuses;
     private int totalCandyCollected;
     private bool atHome;
+    private Image interactPrompt;
 
     // Start is called before the first frame update
     void Start()
     {
+        interactPrompt = Player.GetComponentInChildren<Image>();
+        interactPrompt.enabled = false;
         atHome = false;
     }
 
@@ -35,7 +40,9 @@ public class ReturnCandy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            interactButton.SetActive(true);
+            Debug.Log("Enter");
+            interactPrompt.enabled = true;
+            //interactButton.SetActive(true);
             atHome = true;
         }
     }
@@ -44,7 +51,9 @@ public class ReturnCandy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            interactButton.SetActive(false);
+            Debug.Log("Exit");
+            interactPrompt.enabled = false;
+            //interactButton.SetActive(false);
             atHome = false;
         }
     }

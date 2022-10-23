@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -939976731
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.93361855, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b3f0e0e711ea1de44bd38721de0d72ef, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,12 +127,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickChance: 30
   treatChance: 70
-  interactButtonTag: interactButton
+  interactButton: {fileID: 4211241980923018514, guid: 47677f6476ef3f54fb816eab19135aef, type: 3}
   Player: {fileID: 8050431504810033300, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
   interactKey: 102
   candyPrefabs:
   - {fileID: 1141191915046811948, guid: 080d615439d985043b88c5af9e0ff946, type: 3}
   - {fileID: 1141191915046811948, guid: 069a13656933fad4bba15c99ca0a17fe, type: 3}
+  - {fileID: 1141191915046811948, guid: 3fc530b50605944479ef1d243bb48f4b, type: 3}
+  - {fileID: 1141191915046811948, guid: 0592a0f1f0e64794a8772a5ea672c611, type: 3}
+  - {fileID: 1141191915046811948, guid: 7e36fd13e7fc346479ed28603ca434e0, type: 3}
   minCandy: 1
   maxCandy: 5
   enemyPrefab: {fileID: 7655649809835044037, guid: 6c758c589274e0d42b7d05193633b3ff, type: 3}
@@ -142,7 +145,6 @@ MonoBehaviour:
   spawnForce: 1
   spawnTime: 0.3
   spawnMultiplier: 0.02
-  interactButton: {fileID: 4211241980923018514, guid: 47677f6476ef3f54fb816eab19135aef, type: 3}
 --- !u!114 &1384916652964904651
 MonoBehaviour:
   m_ObjectHideFlags: 0

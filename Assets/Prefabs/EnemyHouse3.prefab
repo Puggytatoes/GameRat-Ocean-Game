@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8506230078071853421}
   - component: {fileID: 8506230078071853416}
   - component: {fileID: 8506230078071853423}
-  - component: {fileID: 1190093289}
+  - component: {fileID: 1384916652964904651}
   m_Layer: 0
-  m_Name: EnemyHouse
+  m_Name: EnemyHouse3
   m_TagString: EnemyHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -939976731
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 75c0d09aa174f5240a217520287de9b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24f5d02e98026314aa120610b4e518fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   spawnForce: 1
   spawnTime: 0.3
   spawnMultiplier: 0.02
---- !u!114 &1190093289
+--- !u!114 &1384916652964904651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
