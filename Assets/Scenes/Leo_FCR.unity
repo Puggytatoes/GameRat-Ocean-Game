@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1446556132259850391, guid: 1098dc1f67452a344bb16bcd2affba6d, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1446556132259850394, guid: 1098dc1f67452a344bb16bcd2affba6d, type: 3}
       propertyPath: moveSpeed
       value: 10
@@ -887,8 +891,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: maxCandy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: maxEnemy
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: minCandy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: minEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: spawnTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: spawnForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 4912225682336397406, guid: 6a31578941a9cc841973b8b406407c3b, type: 3}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: spawnRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
       propertyPath: interactButton
       value: 
       objectReference: {fileID: 2040267876}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: spawnMultiplier
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: candyPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: candyPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1141191915046811948, guid: 080d615439d985043b88c5af9e0ff946, type: 3}
+    - target: {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+      propertyPath: candyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1141191915046811948, guid: 069a13656933fad4bba15c99ca0a17fe, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
