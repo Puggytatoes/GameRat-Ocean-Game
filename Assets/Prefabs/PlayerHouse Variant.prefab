@@ -125,6 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 1141191915046811948, guid: 069a13656933fad4bba15c99ca0a17fe, type: 3}
     m_RemovedComponents:
     - {fileID: 8506230078071853423, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
+    - {fileID: 1190093289, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5380c320ab9d20e4b9db07d8cda34468, type: 3}
 --- !u!1 &864711471930592753 stripped
 GameObject:
@@ -146,3 +147,6 @@ MonoBehaviour:
   interactButton: {fileID: 0}
   interactKey: 102
   grabCandyAmount: {fileID: 0}
+  candyTiers: 
+  candyBonuses: 
+  timeBonuses: []
