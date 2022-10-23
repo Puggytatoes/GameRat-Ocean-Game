@@ -513,6 +513,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8050431504810033305, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 15a9be07de6cb5244b32f6516283e4a3, type: 2}
+    - target: {fileID: 8050431504810033306, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
+      propertyPath: knockbackVel
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8911449313468063502, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
       propertyPath: m_Camera
       value: 

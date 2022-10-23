@@ -22,6 +22,7 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] private float knockbackVel = 8f;
     [SerializeField] private bool knockbacked;
     [SerializeField] private float knockbackWaitTime = 0.5f;
+    [SerializeField] private string enemyTag;
 
     private bool canDash = true;
     [SerializeField] private bool isDashing;
@@ -36,6 +37,7 @@ public class MouseMovement : MonoBehaviour
     private float verticalalMovement;
     private Vector3 moveDirection;
     private float currentMoveSpeed;
+    private bool isStunned;
 
     // Use this for initialization
     void Start()
@@ -48,6 +50,7 @@ public class MouseMovement : MonoBehaviour
         currentDashCharges = dashChargesStart;
         currentlyRechargingDash = false;
         currentMoveSpeed = moveSpeed;
+        isStunned = false;
     }
 
     // Update is called once per frame
@@ -98,14 +101,25 @@ public class MouseMovement : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == enemyTag)
+        {
+            Knockback(collision.transform);
+        }
+    }
+
     private void PlayerInput()
     {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        verticalalMovement = Input.GetAxisRaw("Vertical");
+        if (!isStunned)
+        {
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+            verticalalMovement = Input.GetAxisRaw("Vertical");
 
-        moveDirection = this.transform.up * verticalalMovement + this.transform.right * horizontalMovement;
+            moveDirection = this.transform.up * verticalalMovement + this.transform.right * horizontalMovement;
 
-        rb.AddForce(moveDirection * currentMoveSpeed, ForceMode2D.Force);
+            rb.AddForce(moveDirection * currentMoveSpeed, ForceMode2D.Force);
+        }
     }
 
     private void ClampMovement()
@@ -129,10 +143,10 @@ public class MouseMovement : MonoBehaviour
 
     void Animate()
     {
-        if (rb.velocity.magnitude > 0.5f)
-            anim.SetBool("isSwimming", true);
+        if (isStunned)
+            anim.SetBool("IsStunned", true);
         else
-            anim.SetBool("isSwimming", false);
+            anim.SetBool("IsStunned", false);
     }
 
     private IEnumerator Dash()
@@ -163,6 +177,7 @@ public class MouseMovement : MonoBehaviour
     {
         var dir = center.position - t.position;
         knockbacked = true;
+        isStunned = true;
         rb.velocity = dir.normalized * knockbackVel;
         StartCoroutine(Unknockback());
     }
@@ -171,6 +186,7 @@ public class MouseMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(knockbackWaitTime);
         knockbacked = false;
+        isStunned = false;
     }
 
     public void setMoveSpeed(int candyCount)
