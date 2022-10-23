@@ -12,6 +12,7 @@ public class PointAndShoot : MonoBehaviour
     public GameObject bulletStart;
 
     public float bulletSpeed = 60.0f;
+    [SerializeField] private CandyInteraction grabCandyCount;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,13 @@ public class PointAndShoot : MonoBehaviour
 
         //player.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0) && grabCandyCount.getTotalCurrentCandy() > 0)  
         {
             float distance = difference.magnitude;
             Vector2 direction = difference / distance;
             direction.Normalize();
             fireBullet(direction, rotationZ);
+            grabCandyCount.candyShot();
         }
 
         void fireBullet(Vector2 direction, float rotationZ)

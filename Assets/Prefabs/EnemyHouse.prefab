@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8506230078071853416}
   - component: {fileID: 8506230078071853423}
   m_Layer: 0
-  m_Name: PlayerHouse
-  m_TagString: PlayerHouse
+  m_Name: EnemyHouse
+  m_TagString: EnemyHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.04695626, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,7 +126,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trickChance: 30
   treatChance: 70
-  interactButton: {fileID: 0}
+  interactButtonTag: interactButton
   interactKey: 102
   candyPrefabs: []
+  minCandy: 0
+  maxCandy: 0
   enemyPrefab: {fileID: 0}
+  minEnemy: 0
+  maxEnemy: 0
+  spawnRadius: 0
+  spawnForce: 0
+  spawnTime: 0
+  spawnMultiplier: 0

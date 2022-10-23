@@ -6,7 +6,7 @@ public class KnockOnHouse : MonoBehaviour
 {
     [SerializeField] private float trickChance;
     [SerializeField] private float treatChance;
-    [SerializeField] private GameObject interactButton;
+    [SerializeField] private string interactButtonTag;
     [SerializeField] private KeyCode interactKey = KeyCode.F;
     [SerializeField] private List<GameObject> candyPrefabs;
     [SerializeField] private int minCandy;
@@ -21,31 +21,34 @@ public class KnockOnHouse : MonoBehaviour
     private BoxCollider2D knockZone;
     private float totalChance;
     private Vector2 center;
+    private bool atHouse;
+    private GameObject interactButton;
 
     // Start is called before the first frame update
     void Start()
     {
         knockZone = GetComponent<BoxCollider2D>();
-        interactButton.SetActive(false);
+        interactButton = GameObject.FindGameObjectWithTag(interactButtonTag);
         totalChance = trickChance + treatChance;
         center = transform.position;
+        atHouse = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (interactButton.activeInHierarchy && Input.GetKeyDown(interactKey))
+        if (atHouse && Input.GetKeyDown(interactKey))
         {
             float randomChance = Random.Range(0, totalChance);
             if (randomChance <= trickChance)
             {
-                SpawnEnemies();
                 Debug.Log("TRICK");
+                SpawnEnemies();
             }
             else
             {
-                SpawnCandy();
                 Debug.Log("TREAT");
+                SpawnCandy();
             }
         }
     }
@@ -55,6 +58,7 @@ public class KnockOnHouse : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             interactButton.SetActive(true);
+            atHouse = true;
         }
     }
 
@@ -63,6 +67,7 @@ public class KnockOnHouse : MonoBehaviour
         if (collision.tag == "Player")
         {
             interactButton.SetActive(false);
+            atHouse = false;
         }
     }
 
@@ -77,7 +82,6 @@ public class KnockOnHouse : MonoBehaviour
             pos.x = center.x + spawnRadius * Mathf.Sin(ang * Mathf.Deg2Rad);
             pos.y = center.y + spawnRadius * Mathf.Cos(ang * Mathf.Deg2Rad);
             GameObject enemy = Instantiate(enemyPrefab, new Vector2(0,0), Quaternion.identity);
-
 
             StartCoroutine(SpawningPrefab(enemy, pos));
         }
@@ -94,7 +98,8 @@ public class KnockOnHouse : MonoBehaviour
             pos.x = center.x + spawnRadius * Mathf.Sin(ang * Mathf.Deg2Rad);
             pos.y = center.y + spawnRadius * Mathf.Cos(ang * Mathf.Deg2Rad);
             int randomCandyPrefab = Random.Range(0, candyPrefabs.Count);
-            GameObject candy = Instantiate(candyPrefabs[randomCandyPrefab], new Vector2(0, 0), Quaternion.identity);
+            GameObject candy = Instantiate(candyPrefabs[randomCandyPrefab], transform.position, Quaternion.identity);
+
 
 
             StartCoroutine(SpawningPrefab(candy, pos));
@@ -108,5 +113,6 @@ public class KnockOnHouse : MonoBehaviour
         yield return new WaitForSeconds(spawnTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         prefab.GetComponent<Collider2D>().enabled = true;
+        Destroy(gameObject);
     }
 }

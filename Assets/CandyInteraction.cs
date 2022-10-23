@@ -38,10 +38,24 @@ public class CandyInteraction : MonoBehaviour
             if (collision.gameObject.tag == "Candy")
             {
                 candyCounter++;
-                Debug.Log("collected");
+                Debug.Log("current candy:" + candyCounter);
                 Destroy(collision.gameObject);
             }
         }
     }
 
+    public void clearCandy()
+    {
+        candyCounter = 0;
+    }
+
+    public int getTotalCurrentCandy()
+    {
+        return candyCounter;
+    }
+
+    public void candyShot()
+    {
+        candyCounter--;
+    }
 }
