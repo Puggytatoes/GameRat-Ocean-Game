@@ -8,16 +8,17 @@ public class PointAndShoot : MonoBehaviour
 
     public GameObject crosshair;
     public GameObject player;
-    public GameObject bulletPrefab;
+    //public GameObject bulletPrefab;
     public GameObject bulletStart;
 
     public float bulletSpeed = 60.0f;
     [SerializeField] private CandyInteraction grabCandyCount;
+    [SerializeField] private List<GameObject> candyPrefabs;
 
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -43,7 +44,9 @@ public class PointAndShoot : MonoBehaviour
 
         void fireBullet(Vector2 direction, float rotationZ)
         {
-            GameObject bullet = Instantiate(bulletPrefab) as GameObject;
+            int randomCandy = Random.Range(0, candyPrefabs.Count);
+            //GameObject candy = Instantiate(candyPrefabs[randomCandy], transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(candyPrefabs[randomCandy]) as GameObject;
             bullet.transform.position = bulletStart.transform.position;
             bullet.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
             bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;

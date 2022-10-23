@@ -17,9 +17,9 @@ public class KnockOnHouse : MonoBehaviour
     [SerializeField] private int minEnemy;
     [SerializeField] private int maxEnemy;
     [SerializeField] private float spawnRadius;
-    [SerializeField] private float spawnForce;
+    [SerializeField] private Vector2 spawnForce;
     [SerializeField] private float spawnTime;
-    [SerializeField] private float spawnMultiplier;
+    //[SerializeField] private float spawnMultiplier;
     private BoxCollider2D knockZone;
     private float totalChance;
     private Vector2 center;
@@ -115,13 +115,13 @@ public class KnockOnHouse : MonoBehaviour
 
 
 
-            StartCoroutine(SpawningPrefab(candy, pos));
+            StartCoroutine(SpawningPrefab(candy, pos * spawnForce));
         }
     }
 
     private IEnumerator SpawningPrefab(GameObject prefab, Vector2 force)
     {
-        prefab.GetComponent<Rigidbody2D>().AddForce(force * spawnMultiplier, ForceMode2D.Force);
+        prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
         prefab.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(spawnTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);

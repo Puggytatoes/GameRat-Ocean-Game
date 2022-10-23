@@ -290,6 +290,15 @@ MonoBehaviour:
   knockbacked: 0
   knockbackWaitTime: 1
   enemyTag: Enemy
+  candyInteration: {fileID: 8911449314258383240}
+  candyPrefabs:
+  - {fileID: 1141191915046811948, guid: 080d615439d985043b88c5af9e0ff946, type: 3}
+  - {fileID: 1141191915046811948, guid: 069a13656933fad4bba15c99ca0a17fe, type: 3}
+  - {fileID: 1141191915046811948, guid: 3fc530b50605944479ef1d243bb48f4b, type: 3}
+  - {fileID: 1141191915046811948, guid: 0592a0f1f0e64794a8772a5ea672c611, type: 3}
+  - {fileID: 1141191915046811948, guid: 7e36fd13e7fc346479ed28603ca434e0, type: 3}
+  dropTime: 0.5
+  dropForce: {x: 2, y: 2}
   isDashing: 0
   dashingPower: 24
   dashChargesStart: 3
@@ -325,10 +334,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crosshair: {fileID: 8911449314938920610}
   player: {fileID: 8050431504810033300}
-  bulletPrefab: {fileID: 7187484420669696449, guid: 8b3f04e743e04ab42a50e7eaccbde7d6, type: 3}
   bulletStart: {fileID: 1696982052605694068}
   bulletSpeed: 60
   grabCandyCount: {fileID: 8911449314258383240}
+  candyPrefabs: []
 --- !u!114 &8911449314258383240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8911449314938920611
 Transform:
   m_ObjectHideFlags: 0

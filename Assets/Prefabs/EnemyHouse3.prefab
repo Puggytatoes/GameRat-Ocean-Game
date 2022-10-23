@@ -142,9 +142,8 @@ MonoBehaviour:
   minEnemy: 1
   maxEnemy: 3
   spawnRadius: 4
-  spawnForce: 1
+  spawnForce: {x: 0.1, y: 0.1}
   spawnTime: 0.3
-  spawnMultiplier: 0.02
 --- !u!114 &1384916652964904651
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,6 +23,10 @@ public class MouseMovement : MonoBehaviour
     [SerializeField] private bool knockbacked;
     [SerializeField] private float knockbackWaitTime = 0.5f;
     [SerializeField] private string enemyTag;
+    [SerializeField] private CandyInteraction candyInteration;
+    [SerializeField] private List<GameObject> candyPrefabs;
+    [SerializeField] private float dropTime;
+    [SerializeField] private Vector2 dropForce;
 
     private bool canDash = true;
     [SerializeField] private bool isDashing;
@@ -175,6 +179,13 @@ public class MouseMovement : MonoBehaviour
 
     public void Knockback(Transform t)
     {
+        //List<GameObject> candies = new List<GameObject>();
+        for (int i = 0; i < candyInteration.getTotalCurrentCandy(); i++)
+        {
+            int randomCandy = Random.Range(0, candyPrefabs.Count);
+            GameObject candy = Instantiate(candyPrefabs[randomCandy], transform.position, Quaternion.identity);
+            StartCoroutine(DropCandy(candy, dropForce));
+        }
         var dir = center.position - t.position;
         knockbacked = true;
         isStunned = true;
@@ -187,11 +198,22 @@ public class MouseMovement : MonoBehaviour
         yield return new WaitForSeconds(knockbackWaitTime);
         knockbacked = false;
         isStunned = false;
+        candyInteration.clearCandy();
     }
 
     public void setMoveSpeed(int candyCount)
     {
         float speedReduction = candyCount * speedReductionMultiplier;
         currentMoveSpeed = moveSpeed - speedReduction;
+    }
+
+    private IEnumerator DropCandy(GameObject prefab, Vector2 force)
+    {
+        Instantiate(prefab, transform.position, Quaternion.identity);
+        prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
+        prefab.GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(dropTime);
+        prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        prefab.GetComponent<Collider2D>().enabled = true;
     }
 }
