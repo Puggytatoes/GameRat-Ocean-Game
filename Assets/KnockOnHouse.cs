@@ -52,7 +52,7 @@ public class KnockOnHouse : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             interactButton.SetActive(true);
         }
@@ -104,7 +104,9 @@ public class KnockOnHouse : MonoBehaviour
     private IEnumerator SpawningPrefab(GameObject prefab, Vector2 force)
     {
         prefab.GetComponent<Rigidbody2D>().AddForce(force * spawnMultiplier, ForceMode2D.Force);
+        prefab.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(spawnTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+        prefab.GetComponent<Collider2D>().enabled = true;
     }
 }

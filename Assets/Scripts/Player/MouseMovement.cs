@@ -10,6 +10,7 @@ public class MouseMovement : MonoBehaviour
     private bool isHoldingMouse;
     private float rotation_z;
     [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private float speedReductionMultiplier;
     private Rigidbody2D rb;
     private Animator anim;
     private CircleCollider2D coll;
@@ -34,6 +35,7 @@ public class MouseMovement : MonoBehaviour
     private float horizontalMovement;
     private float verticalalMovement;
     private Vector3 moveDirection;
+    private float currentMoveSpeed;
 
     // Use this for initialization
     void Start()
@@ -45,6 +47,7 @@ public class MouseMovement : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         currentDashCharges = dashChargesStart;
         currentlyRechargingDash = false;
+        currentMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -91,12 +94,6 @@ public class MouseMovement : MonoBehaviour
             {
                 return;
             }
-
-            /*
-            if (isHoldingMouse)
-                rb.AddForce((moveDirection) * moveSpeed * Time.deltaTime);
-            else
-                rb.AddForce(-rb.velocity * rb.mass * Time.deltaTime);*/
         }
 
     }
@@ -108,7 +105,7 @@ public class MouseMovement : MonoBehaviour
 
         moveDirection = this.transform.up * verticalalMovement + this.transform.right * horizontalMovement;
 
-        rb.AddForce(moveDirection * moveSpeed, ForceMode2D.Force);
+        rb.AddForce(moveDirection * currentMoveSpeed, ForceMode2D.Force);
     }
 
     private void ClampMovement()
@@ -174,5 +171,11 @@ public class MouseMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(knockbackWaitTime);
         knockbacked = false;
+    }
+
+    public void setMoveSpeed(int candyCount)
+    {
+        float speedReduction = candyCount * speedReductionMultiplier;
+        currentMoveSpeed = moveSpeed - speedReduction;
     }
 }
