@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class TimerCountdown : MonoBehaviour
 {
-	public float timeValue = 120;
+    private float timeValue = 120; 
 	public TextMeshProUGUI timerText;
 
     private void Update()
@@ -31,5 +31,15 @@ public class TimerCountdown : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void AddTime(float timeToAdd)
+    {
+        timeValue += timeToAdd;
+    }
+
+    public float GetTime()
+    {
+        return timeValue; 
     }
 }
