@@ -759,6 +759,10 @@ PrefabInstance:
       propertyPath: dashIcons.Array.data[2]
       value: 
       objectReference: {fileID: 1390581516}
+    - target: {fileID: 8050431504810033306, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
+      propertyPath: speedReductionMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8911449313468063502, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
       propertyPath: m_Camera
       value: 
