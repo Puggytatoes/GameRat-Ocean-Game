@@ -416,6 +416,10 @@ PrefabInstance:
       value: TimerManager
       objectReference: {fileID: 0}
     - target: {fileID: 9108964831994924931, guid: 83838974a21978e4b8fe45e36b0932be, type: 3}
+      propertyPath: timeValue
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108964831994924931, guid: 83838974a21978e4b8fe45e36b0932be, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 982146368}

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class TimerCountdown : MonoBehaviour
 {
-    private float timeValue = 120; 
+    [SerializeField] private float timeValue = 120; 
 	public TextMeshProUGUI timerText;
 
     private void Update()
