@@ -17,7 +17,7 @@ public class EnemyHurt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         isStunned = false;
     }
@@ -41,17 +41,18 @@ public class EnemyHurt : MonoBehaviour
     {
         var dir = transform.position - t.position;
         isStunned = true;
-        rb.velocity = dir.normalized * knockbackVel;
+        rb.velocity = new Vector2(0,0);
         targetFinder.enabled = false;
         StartCoroutine(Unknockback(collision.gameObject));
     }
 
     private IEnumerator Unknockback(GameObject gameObject)
     {
+        Destroy(gameObject);
         yield return new WaitForSeconds(knockbackWaitTime);
         isStunned = false;
         targetFinder.enabled = true;
-        Destroy(gameObject);
+        Debug.Log("Made It");
     }
 
     void Animate()

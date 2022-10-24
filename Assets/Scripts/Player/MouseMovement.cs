@@ -67,6 +67,7 @@ public class MouseMovement : MonoBehaviour
         
         PlayerInput();
         ClampMovement();
+        updateCharges();
 
         if (isDashing)
             return;
@@ -75,7 +76,7 @@ public class MouseMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             currentDashCharges--;
-
+            removeCharge();
             StartCoroutine(DashRecharge());
         }
 
