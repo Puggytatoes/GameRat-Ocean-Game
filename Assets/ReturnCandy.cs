@@ -11,7 +11,7 @@ public class ReturnCandy : MonoBehaviour
     [SerializeField] private List<int> candyTiers;
     [SerializeField] private List<int> candyBonuses;
     [SerializeField] private List<float> timeBonuses;
-    private int totalCandyCollected;
+    public static int totalCandyCollected;
     private bool atHome;
     private Image interactPrompt;
     private GameObject Player;
