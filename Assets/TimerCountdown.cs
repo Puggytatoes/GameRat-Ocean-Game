@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class TimerCountdown : MonoBehaviour
 {
     private float timeValue = 120; 
@@ -17,6 +19,7 @@ public class TimerCountdown : MonoBehaviour
         else
         {
             timeValue = 0;
+            SceneManager.LoadScene("Game Over");
         }
         DisplayTime(timeValue);
     }

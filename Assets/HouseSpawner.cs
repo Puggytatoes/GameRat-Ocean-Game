@@ -19,6 +19,7 @@ public class HouseSpawner : MonoBehaviour
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         //houses = GameObject.FindGameObjectsWithTag("EnemyHouse");
         canSpawnHouse = true;
+        ReturnCandy.totalCandyCollected = 0;
     }
 
     // Update is called once per frame
