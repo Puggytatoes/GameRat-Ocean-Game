@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().StopPlaying("menu");
         FindObjectOfType<AudioManager>().Play("game theme");
-        //SceneManager.LoadScene("Start"); 
+        SceneManager.LoadScene("Leo_FCR"); 
     }
 
 }
