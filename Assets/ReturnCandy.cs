@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ReturnCandy : MonoBehaviour
 {
-    [SerializeField] private GameObject interactButton;
-    [SerializeField] private GameObject Player;
+    //[SerializeField] private GameObject interactButton;
     [SerializeField] private KeyCode interactKey = KeyCode.F;
     [SerializeField] private CandyInteraction grabCandyAmount;
     [SerializeField] private List<int> candyTiers;
@@ -15,10 +14,12 @@ public class ReturnCandy : MonoBehaviour
     private int totalCandyCollected;
     private bool atHome;
     private Image interactPrompt;
+    private GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         interactPrompt = Player.GetComponentInChildren<Image>();
         interactPrompt.enabled = false;
         atHome = false;

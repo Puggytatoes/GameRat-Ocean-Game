@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696982052605694068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.93, y: -0.04, z: 0}
+  m_LocalPosition: {x: 0.74, y: -0.07, z: 0}
   m_LocalScale: {x: 1.1366109, y: 1.1366109, z: 1.1366109}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8050431504810033307}
   - component: {fileID: 8911449314258383243}
   - component: {fileID: 8911449314258383240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_GameJam
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 8050431504810033300}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa695a54a2a882442af95f63e17fb0be, type: 2}
+  m_Controller: {fileID: 9100000, guid: 15a9be07de6cb5244b32f6516283e4a3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   speedReductionMultiplier: 0.35
   center: {fileID: 8911449313837317616}
   bulletStart: {fileID: 1696982052605694068}
-  knockbackVel: 8
+  knockbackVel: 20
   knockbacked: 0
   knockbackWaitTime: 1
   enemyTag: Enemy
@@ -298,7 +298,7 @@ MonoBehaviour:
   - {fileID: 1141191915046811948, guid: 0592a0f1f0e64794a8772a5ea672c611, type: 3}
   - {fileID: 1141191915046811948, guid: 7e36fd13e7fc346479ed28603ca434e0, type: 3}
   dropTime: 0.5
-  dropForce: {x: 2, y: 2}
+  dropForce: {x: 0.01, y: 0.01}
   isDashing: 0
   dashingPower: 24
   dashChargesStart: 3
@@ -335,9 +335,15 @@ MonoBehaviour:
   crosshair: {fileID: 8911449314938920610}
   player: {fileID: 8050431504810033300}
   bulletStart: {fileID: 1696982052605694068}
-  bulletSpeed: 60
+  bulletSpeed: 20
+  bulletSprite: {fileID: 7187484420669696449, guid: 8b3f04e743e04ab42a50e7eaccbde7d6, type: 3}
   grabCandyCount: {fileID: 8911449314258383240}
-  candyPrefabs: []
+  candySprites:
+  - {fileID: 21300000, guid: 517ad9fb0739a0a4ba67bcb7b9b085c1, type: 3}
+  - {fileID: 21300000, guid: d21a5243cd698f345b9745822bb3c46d, type: 3}
+  - {fileID: 21300000, guid: fb51e660374e6284bac5cf18c39ba8f4, type: 3}
+  - {fileID: 21300000, guid: 38d8e18f0f1cab54cb079d3a628261db, type: 3}
+  - {fileID: 21300000, guid: f5b2d1379b41e8d4e99358d3e65dd67f, type: 3}
 --- !u!114 &8911449314258383240
 MonoBehaviour:
   m_ObjectHideFlags: 0

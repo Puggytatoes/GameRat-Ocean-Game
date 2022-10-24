@@ -8,7 +8,7 @@ public class KnockOnHouse : MonoBehaviour
     [SerializeField] private float trickChance;
     [SerializeField] private float treatChance;
     [SerializeField] private GameObject interactButton;
-    [SerializeField] private GameObject Player;
+    private GameObject Player;
     [SerializeField] private KeyCode interactKey = KeyCode.F;
     [SerializeField] private List<GameObject> candyPrefabs;
     [SerializeField] private int minCandy;
@@ -29,6 +29,7 @@ public class KnockOnHouse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         knockZone = GetComponent<BoxCollider2D>();
         //interactButton.SetActive(false);
         interactPrompt = Player.GetComponentInChildren<Image>();
@@ -94,7 +95,7 @@ public class KnockOnHouse : MonoBehaviour
             Vector2 pos;
             pos.x = center.x + spawnRadius * Mathf.Sin(ang * Mathf.Deg2Rad);
             pos.y = center.y + spawnRadius * Mathf.Cos(ang * Mathf.Deg2Rad);
-            GameObject enemy = Instantiate(enemyPrefab, new Vector2(0,0), Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
 
             StartCoroutine(SpawningPrefab(enemy, pos));
         }
@@ -122,7 +123,6 @@ public class KnockOnHouse : MonoBehaviour
     private IEnumerator SpawningPrefab(GameObject prefab, Vector2 force)
     {
         prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
-        prefab.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(spawnTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
         prefab.GetComponent<Collider2D>().enabled = true;

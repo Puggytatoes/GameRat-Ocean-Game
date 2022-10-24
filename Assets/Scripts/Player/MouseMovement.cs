@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MouseMovement : MonoBehaviour
 {
     private Vector3 mousePosition;
@@ -43,6 +43,8 @@ public class MouseMovement : MonoBehaviour
     private float currentMoveSpeed;
     private bool isStunned;
 
+    [SerializeField] private List<GameObject> dashIcons;
+
     // Use this for initialization
     void Start()
     {
@@ -73,6 +75,7 @@ public class MouseMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             currentDashCharges--;
+
             StartCoroutine(DashRecharge());
         }
 
@@ -180,11 +183,14 @@ public class MouseMovement : MonoBehaviour
     public void Knockback(Transform t)
     {
         //List<GameObject> candies = new List<GameObject>();
-        for (int i = 0; i < candyInteration.getTotalCurrentCandy(); i++)
+        if (candyInteration.getTotalCurrentCandy() > 0)
         {
-            int randomCandy = Random.Range(0, candyPrefabs.Count);
-            GameObject candy = Instantiate(candyPrefabs[randomCandy], transform.position, Quaternion.identity);
-            StartCoroutine(DropCandy(candy, dropForce));
+            for (int i = 0; i < candyInteration.getTotalCurrentCandy(); i++)
+            {
+                int randomCandy = Random.Range(0, candyPrefabs.Count);
+                GameObject candy = Instantiate(candyPrefabs[randomCandy], transform.position, Quaternion.identity);
+                StartCoroutine(DropCandy(candy, dropForce));
+            }
         }
         var dir = center.position - t.position;
         knockbacked = true;
@@ -207,13 +213,30 @@ public class MouseMovement : MonoBehaviour
         currentMoveSpeed = moveSpeed - speedReduction;
     }
 
+    public bool returnStunned()
+    {
+        return isStunned;
+    }
+
     private IEnumerator DropCandy(GameObject prefab, Vector2 force)
     {
-        Instantiate(prefab, transform.position, Quaternion.identity);
         prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
         prefab.GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(dropTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         prefab.GetComponent<Collider2D>().enabled = true;
+    }
+
+    private void updateCharges()
+    {
+        for (int i = 0; i < currentDashCharges; i++)
+        {
+            dashIcons[i].GetComponent<Image>().enabled = true;
+        }
+    }
+
+    private void removeCharge()
+    {
+
     }
 }

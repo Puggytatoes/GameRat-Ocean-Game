@@ -8,6 +8,7 @@ public class CandyInteraction : MonoBehaviour
     [SerializeField] private MouseMovement mouseMovement;
     private int candyCounter;
     private bool canCollect;
+    private bool isStunned;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class CandyInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (candyCounter < maxCandyCount)
+        if (candyCounter < maxCandyCount && !mouseMovement.returnStunned())
         {
             canCollect = true;
         }
@@ -31,7 +32,7 @@ public class CandyInteraction : MonoBehaviour
         mouseMovement.setMoveSpeed(candyCounter);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (canCollect)
         {

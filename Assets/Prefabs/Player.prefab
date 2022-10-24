@@ -236,12 +236,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 500
+  speedReductionMultiplier: 0
   center: {fileID: 251254256}
+  bulletStart: {fileID: 1126766089598337970, guid: a25bab483cd85ea49a8626db06a6d3c9, type: 3}
   knockbackVel: 8
   knockbacked: 0
   knockbackWaitTime: 1
+  enemyTag: 
+  candyInteration: {fileID: 0}
+  candyPrefabs: []
+  dropTime: 0
+  dropForce: {x: 0, y: 0}
   isDashing: 0
   dashingPower: 24
+  dashChargesStart: 0
+  dashingCooldown: 0.5
+  dashRechargeTime: 0
 --- !u!58 &1446556132259850395
 CircleCollider2D:
   m_ObjectHideFlags: 0

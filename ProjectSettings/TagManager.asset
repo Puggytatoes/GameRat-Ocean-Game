@@ -9,6 +9,7 @@ TagManager:
   - EnemyHouse
   - Candy
   - interactButton
+  - bullet
   layers:
   - Default
   - TransparentFX
