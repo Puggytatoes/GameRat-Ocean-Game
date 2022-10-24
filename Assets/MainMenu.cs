@@ -32,8 +32,5 @@ public class MainMenu : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("game theme");
         //SceneManager.LoadScene("Start"); 
     }
-    public void BackToMain()
-    {
-        SceneManager.LoadScene("Main Menu");
-    }
+
 }
