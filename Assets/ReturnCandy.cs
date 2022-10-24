@@ -11,6 +11,7 @@ public class ReturnCandy : MonoBehaviour
     [SerializeField] private List<int> candyTiers;
     [SerializeField] private List<int> candyBonuses;
     [SerializeField] private List<float> timeBonuses;
+    [SerializeField] private TimerCountdown timer;
     public static int totalCandyCollected;
     private bool atHome;
     private Image interactPrompt;
@@ -66,6 +67,18 @@ public class ReturnCandy : MonoBehaviour
 
     private void calculateBonuses()
     {
-
+        int tier = -1;
+        for (int i = 0; i < candyTiers.Count; i++)
+        {
+            if (grabCandyAmount.getTotalCurrentCandy() >= candyTiers[i])
+            {
+                tier++;
+            }
+        }
+        if (tier >= 0)
+        {
+            totalCandyCollected += candyBonuses[tier];
+            timer.AddTime(timeBonuses[tier]);
+        }
     }
 }

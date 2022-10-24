@@ -65,7 +65,6 @@ public class MouseMovement : MonoBehaviour
         
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
-        PlayerInput();
         ClampMovement();
         updateCharges();
 
@@ -76,8 +75,6 @@ public class MouseMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             currentDashCharges--;
-            removeCharge();
-            StartCoroutine(DashRecharge());
         }
 
         Animate();
@@ -97,6 +94,7 @@ public class MouseMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        PlayerInput();
 
         if (!knockbacked)
         {
@@ -159,6 +157,8 @@ public class MouseMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        removeCharge();
+        StartCoroutine(DashRecharge());
         canDash = false;
         isDashing = true;
         rb.velocity = new Vector2(moveDirection.x * dashingPower, moveDirection.y * dashingPower);
@@ -172,13 +172,13 @@ public class MouseMovement : MonoBehaviour
 
     private IEnumerator DashRecharge()
     {
-        currentlyRechargingDash = true;
+        //currentlyRechargingDash = true;
         yield return new WaitForSeconds(dashRechargeTime);
-        if (currentDashCharges < dashChargesStart && !currentlyRechargingDash)
+        if (currentDashCharges < dashChargesStart)
         {
             currentDashCharges++;
         }
-        currentlyRechargingDash = false;
+        //currentlyRechargingDash = false;
     }
 
     public void Knockback(Transform t)
@@ -222,10 +222,10 @@ public class MouseMovement : MonoBehaviour
     private IEnumerator DropCandy(GameObject prefab, Vector2 force)
     {
         prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
-        prefab.GetComponent<Collider2D>().enabled = false;
+        prefab.GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(dropTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-        prefab.GetComponent<Collider2D>().enabled = true;
+        prefab.GetComponent<CircleCollider2D>().enabled = true;
     }
 
     private void updateCharges()
@@ -238,6 +238,6 @@ public class MouseMovement : MonoBehaviour
 
     private void removeCharge()
     {
-        dashIcons[currentDashCharges].GetComponent<Image>().enabled = false;
+        dashIcons[currentDashCharges - 1].GetComponent<Image>().enabled = false;
     }
 }

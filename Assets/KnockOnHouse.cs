@@ -25,6 +25,7 @@ public class KnockOnHouse : MonoBehaviour
     private Vector2 center;
     private bool atHouse;
     private Image interactPrompt;
+    private SpriteRenderer houseImage;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class KnockOnHouse : MonoBehaviour
         knockZone = GetComponent<BoxCollider2D>();
         //interactButton.SetActive(false);
         interactPrompt = Player.GetComponentInChildren<Image>();
+        houseImage = GetComponent<SpriteRenderer>();
         interactPrompt.enabled = false;
         totalChance = trickChance + treatChance;
         center = transform.position;
@@ -49,6 +51,7 @@ public class KnockOnHouse : MonoBehaviour
     {
         if (atHouse && Input.GetKeyDown(interactKey))
         {
+            houseImage.enabled = false;
             float randomChance = Random.Range(0, totalChance);
             if (randomChance <= trickChance)
             {
@@ -125,7 +128,7 @@ public class KnockOnHouse : MonoBehaviour
         prefab.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
         yield return new WaitForSeconds(spawnTime);
         prefab.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-        prefab.GetComponent<Collider2D>().enabled = true;
+        prefab.GetComponent<CircleCollider2D>().enabled = true;
         interactButton.SetActive(false);
         Destroy(gameObject);
     }
