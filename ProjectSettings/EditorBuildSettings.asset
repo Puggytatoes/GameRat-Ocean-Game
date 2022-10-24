@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: d7f610f914e5f6c489cf8b2f94a6ad7c
   - enabled: 1
-    path: Assets/Scenes/Leo_FCR.unity
-    guid: 1b8a26e313dc81f4db0cea482cd6e00e
-  - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: ae355986e0e67704ba73c291970fb164
+  - enabled: 1
+    path: Assets/Scenes/Leo_FCR.unity
+    guid: 1b8a26e313dc81f4db0cea482cd6e00e
   m_configObjects: {}
