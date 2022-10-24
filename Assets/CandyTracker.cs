@@ -17,6 +17,6 @@ public class CandyTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        candyCountText.text = candyCount.getTotalCurrentCandy().ToString();
+        candyCountText.text = ReturnCandy.totalCandyCollected.ToString();
     }
 }

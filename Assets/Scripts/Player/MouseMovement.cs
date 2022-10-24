@@ -90,7 +90,7 @@ public class MouseMovement : MonoBehaviour
         if (coll.OverlapPoint(mousePosition))
         {
             isHoldingMouse = false;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
         }
 
 

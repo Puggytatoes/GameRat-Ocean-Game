@@ -128,7 +128,6 @@ MonoBehaviour:
   trickChance: 30
   treatChance: 70
   interactButton: {fileID: 4211241980923018514, guid: 47677f6476ef3f54fb816eab19135aef, type: 3}
-  Player: {fileID: 8050431504810033300, guid: aac9220a8b1bb5048bab4275856689c3, type: 3}
   interactKey: 102
   candyPrefabs:
   - {fileID: 1141191915046811948, guid: 080d615439d985043b88c5af9e0ff946, type: 3}
@@ -138,7 +137,7 @@ MonoBehaviour:
   - {fileID: 1141191915046811948, guid: 7e36fd13e7fc346479ed28603ca434e0, type: 3}
   minCandy: 1
   maxCandy: 5
-  enemyPrefab: {fileID: 805027470885431980, guid: 6d16d507ca4e6164dbbefc0e94f66c54, type: 3}
+  enemyPrefab: {fileID: 7655649809835044037, guid: 6c758c589274e0d42b7d05193633b3ff, type: 3}
   minEnemy: 1
   maxEnemy: 3
   spawnRadius: 4
