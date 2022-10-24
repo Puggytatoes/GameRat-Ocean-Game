@@ -237,6 +237,6 @@ public class MouseMovement : MonoBehaviour
 
     private void removeCharge()
     {
-
+        dashIcons[currentDashCharges].GetComponent<Image>().enabled = false;
     }
 }

@@ -59,6 +59,11 @@ public class ReturnCandy : MonoBehaviour
         }
     }
 
+    public int totalCandyAmount()
+    {
+        return totalCandyCollected;
+    }
+
     private void calculateBonuses()
     {
 
