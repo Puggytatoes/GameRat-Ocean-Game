@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("We hit " + enemy.name);
             GameObject other = enemy.gameObject;
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(attackDmg);
+            enemyHealth.TakeDamage(attackDmg, other);
 
             EnemyKnockback enemyKnockback = other.GetComponent<EnemyKnockback>();
             enemyKnockback.Knockback(transform);
