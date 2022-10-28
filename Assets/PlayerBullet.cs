@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
         {
             GameObject enemy = collision.gameObject;
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(bulletDmg, enemy);
+            enemyHealth.TakeDamage(bulletDmg);
             Destroy(gameObject);
         }
         //later add a way for the bullets to be destroyed whenever they hit anything (except the a* zone) 
